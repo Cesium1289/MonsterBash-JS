@@ -41,9 +41,10 @@ class Monster{
     }
 }
 
+
+//take event data in create-monster.html to create a new monster
 function CreateMonster(e)
 {
-   
     let type='';
     e.preventDefault();
     let name = e.target.querySelector("#monster-name-value").value;
@@ -60,14 +61,44 @@ function CreateMonster(e)
         e.target.querySelector("#monster-name-value").value = '';
         e.target.querySelectorAll("#monster").forEach((monster)=>{
             monster.isChecked = false});
+            AddMonsterToLocalStorage(monster);
     }
     else
     {
         alert("Enter valid monster creation options!")
     }
-   
   
 }
+
+//Add a newly created monster to local storage
+function AddMonsterToLocalStorage(newMonster)
+{
+    let monsters = [];
+    let exists = false;
+    
+    if(localStorage.getItem("available-monsters")!= null)
+    {
+    monsters = JSON.parse(localStorage.getItem("available-monsters"));
+        monsters.forEach((monster)=>{
+            if(monster.name.toLowerCase() === newMonster.name.toLowerCase() )
+            {
+                alert("A monster with that name already exists. Please choose a different name.");
+                exists = true;
+                return;
+            }
+        })
+    }
+
+    if(!exists)
+    {
+        if(localStorage.getItem("current-monster")== null)
+        localStorage.setItem("current-monster", JSON.stringify(newMonster));
+        monsters.push(newMonster);
+        localStorage.setItem('available-monsters',JSON.stringify(monsters));
+    }
+
+}
+
 class Stat{
     name;
     value;
