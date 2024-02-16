@@ -1,13 +1,3 @@
-
-const monsterData = {
-    name: "Goblin",
-    type: "Creature",
-    stats: [
-        new Stat("Strength", 10) ,
-         new Stat("eat","10")
-        // Add more stats as needed
-    ]
-};
 function CreateMenu(){
     const navbar = document.querySelector(".navbar");
     navbar.appendChild(CreateNavButton("Create Monster", "button-a","create-monster.html"));
@@ -28,13 +18,6 @@ function CreateNavButton(text, classNames, destination){
     a.appendChild(button)
     return a;
 }
-
-
-// Create a new Monster instance
-const myMonster = new Monster(monsterData.name, monsterData.type, monsterData.stats);
-localStorage.setItem("currentMonster",JSON.stringify(myMonster));
-
-const newMonster = JSON.parse(localStorage.getItem("currentMonster"));
 
 
 //myMonster.DisplayToDom();

@@ -91,6 +91,8 @@ function AddMonsterToLocalStorage(newMonster)
 
     if(!exists)
     {
+        if(localStorage.getItem("current-monster")== null)
+        localStorage.setItem("current-monster", JSON.stringify(newMonster));
         monsters.push(newMonster);
         localStorage.setItem('available-monsters',JSON.stringify(monsters));
     }
