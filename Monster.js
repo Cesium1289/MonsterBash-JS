@@ -70,9 +70,8 @@ function CreateMonster(e)
   
 }
 
-
 //Add a newly created monster to local storage
-function AddMonsterTolocalStorage(newMonster)
+function AddMonsterToLocalStorage(newMonster)
 {
     let monsters = [];
     let exists = false;
