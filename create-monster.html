@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="Styles.css">
+    <title>Monster Creation</title>
+    <h1 style="display: flex; justify-content: center;">Create Monster </h1>    
+</head>
+
+<body>
+    <div class="navbar" style="display:flex; justify-content: center;"></div>
+
+    <div class="monster-creation" style="display:flex; justify-content: center;">
+        <form style="display:flex; justify-content:flex-start;">
+            <div id="monster-name">
+                <label for="monster-name">Monster Name</label><br>
+                <input type="text" id="monster-name-value"><br>
+            </div>  
+            <div id="monster-type"><input type="radio" id="monster" name="monster-type" value="Vampire">
+                <label for="monster-vampire">Vampire</label><br></div>
+            <div id="monster-type"><input type="radio" id="monster" name="monster-type" value="Werewolf">
+                <label for="monster-werewolf">Werewolf</label><br></div>
+            <div id="monster-type"><input type="radio" id="monster" name="monster-type" value="Treant">
+                <label for="monster-treant">Treant</label><br></div>
+                <button>Submit</button>
+        </form>
+    </div>
+</body>
+
+<script src="Monster.js"></script>
+<script src="script.js"></script>
+</html>
