@@ -1,19 +1,27 @@
 
 class Monster{
-    constructor(name,type,stat=''){
+    constructor(name,type,stats=0){
         this.name = name;
         this.type = type;
         this.stats = new Array();    
 
-        if(Array.isArray(stat))
+        //only use stat param if it is an array of stats
+        if(Array.isArray(stats))
         {
-            this.stats = stat.map((x)=>{
-                return{name: x.name, value: x.value}
+            this.stats = stats.map((stat)=>{
+                return{name: stat.name, value: stat.value}
             })
             
         } 
         else
-        this.stats.push(stat);
+        this.GenerateStats();
+    }
+
+    GenerateStats()
+    {
+        this.stats = [new Stat("Health",100,150), 
+        new Stat("Armor",100,150),
+        new Stat("Damage",20)]  
     }
     
     Display(){
@@ -102,12 +110,24 @@ function AddMonsterToLocalStorage(newMonster)
 class Stat{
     name;
     value;
-    constructor(name,value){
+    constructor(name,value, maxVal=0){
         this.name = name;
-        this.value = value;
+
+        //if a max val is passed, value becomes the minimum value
+        // the stat can be
+        if(maxVal !==0)
+        this.value = this.GenerateStatValue(value,maxVal);
+        else
+        this.value= value;
         Object.preventExtensions(this);
     }
-
+    GenerateStatValue(min,max){
+        const minCeiled = Math.ceil(min);
+        const maxFloored = Math.floor(max);
+        this.value = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
+        console.log(this.value)
+        return this.value;
+    }
     get name()
     {
         return this.name;
