@@ -19,6 +19,43 @@ function CreateNavButton(text, classNames, destination){
     return a;
 }
 
+function DisplayAllMonsters(){
+    const div = document.querySelector(".monster-display");
+    console.log(div)
+    if(localStorage.getItem("available-monsters") == null)
+    {
+        div.appendChild(document.createTextNode("There are no monsters to display"));
+        
+    }
+    else
+    {
+        const curMonster = JSON.parse(localStorage.getItem("current-monster"));
+        const monsters = JSON.parse(localStorage.getItem("available-monsters"));
+        monsters.forEach((monster) => {
+            const monsterDiv = document.createElement("div");
+            monsterDiv.innerText = monster.name;
+            monsterDiv.classList.add("monster");
+            monsterDiv.style.margin= '25px';
+            if(curMonster.name === monster.name)
+            monsterDiv.style.backgroundColor = 'red';
+            div.appendChild(monsterDiv);
+            monster.stats.forEach((stat)=>{
+                const li = document.createElement("li");
+                li.textContent = `${stat.name}: ${stat.value}`;
+                monsterDiv.appendChild(li); 
+            })
+            const selectBtn = document.createElement("button");
+            selectBtn.innerText = 'Select';
+            monsterDiv.appendChild(selectBtn);
+            const removeBtn = document.createElement("button");
+            removeBtn.innerText = 'Remove';
+            monsterDiv.appendChild(removeBtn);
+
+        });
+
+    }
+}
+
 
 //myMonster.DisplayToDom();
 function init(){
@@ -33,6 +70,7 @@ function init(){
             console.log("at the main menu");
             break;
         case '/display.html':
+            DisplayAllMonsters();
             console.log("display monster page")
             break;
         case '/create-monster.html':
